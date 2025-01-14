@@ -19,7 +19,6 @@ You may want to write your own script with your datasets and other customization
 import logging
 import os
 from collections import OrderedDict
-import torch
 
 import detectron2.utils.comm as comm
 from detectron2.checkpoint import DetectionCheckpointer
@@ -151,7 +150,7 @@ def main(args):
     return trainer.train()
 
 
-if __name__ == "__main__":
+def invoke_main() -> None:
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
     launch(
@@ -162,3 +161,7 @@ if __name__ == "__main__":
         dist_url=args.dist_url,
         args=(args,),
     )
+
+
+if __name__ == "__main__":
+    invoke_main()  # pragma: no cover
